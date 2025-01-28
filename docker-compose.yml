@@ -1,0 +1,16 @@
+services:
+  autogen:
+    build: ./autogen
+    extra_hosts:
+        - "host.docker.internal:host-gateway"
+    ports:
+      - "4000:4000"
+  jupyter:
+    build: 
+      context: ./jupyter
+    ports: 
+      - 8888:8888
+    volumes:
+      - ./data:/workspace/data
+      - ./jupyter/notebooks/:/workspace/notebooks/
+      - ~/.cache/:/root/.cache/
